@@ -1,0 +1,240 @@
+{
+  "info": {
+    "_postman_id": "foro-hub-api",
+    "name": "Foro Hub API",
+    "description": "Collection para probar la API REST del Foro Hub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correoElectronico\": \"juan@example.com\",\n  \"contrasena\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Topicos",
+      "item": [
+        {
+          "name": "Crear Tópico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Nueva duda sobre Spring\",\n  \"mensaje\": \"¿Cómo implementar paginación?\",\n  \"autorId\": 1,\n  \"cursoId\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/topicos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos"]
+            }
+          }
+        },
+        {
+          "name": "Listar Tópicos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/topicos?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Tópico por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/topicos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar Tópico",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Duda actualizada sobre Spring\",\n  \"mensaje\": \"¿Cómo implementar paginación avanzada?\",\n  \"cursoId\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/topicos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar Tópico",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/topicos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Listar Tópicos por Curso",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/topicos/buscar/curso?nombreCurso=Spring Boot&page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos", "buscar", "curso"],
+              "query": [
+                {
+                  "key": "nombreCurso",
+                  "value": "Spring Boot"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar Tópicos por Curso y Año",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/topicos/buscar/curso-year?nombreCurso=Spring Boot&year=2025&page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["topicos", "buscar", "curso-year"],
+              "query": [
+                {
+                  "key": "nombreCurso",
+                  "value": "Spring Boot"
+                },
+                {
+                  "key": "year",
+                  "value": "2025"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
